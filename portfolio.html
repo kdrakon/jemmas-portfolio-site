@@ -4,7 +4,7 @@
 	
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/portfolio.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Copse&effect=outline' rel='stylesheet' type='text/css'>
 
 
 
@@ -17,21 +17,29 @@ html, body {
 	font-family: 'Copse', serif;
 }
 
-div {
+#bar {
+	background-color: #EBC137;
+	width: 100%;
+	height: 1em;
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: black;
+}
+
+div, footer {
 	//border-style: solid;
 }
 
 .grey-gradient {
 	
-	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNhZmFmYWYiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(175,175,175,1) 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(175,175,175,1))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* IE10+ */
-	background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(175,175,175,1) 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#afafaf',GradientType=1 ); /* IE6-8 */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiN2I3YjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(183,183,183,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(183,183,183,1)));
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
+	background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
+	background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#b7b7b7',GradientType=0 );
 }
 
 #intro {
@@ -42,32 +50,49 @@ div {
 	font-size: 3em;
 }
 
+#me {
+	color: #EBC137
+}
+
 #byline {
 	margin: auto;
 	width: 50%;
 	text-align: right;
-	padding-bottom: 0.5em;
+	margin-bottom: 0.5em;
 	font-style: italic;
 	font-size: 1.25em;
 }
 
+#bio {
+	margin: auto;
+	width: 50%;
+	border-top-style: solid;
+	border-width: 1px;
+	padding-left: 1em;
+	padding-top: 1em;
+	margin-bottom: 1em;
+}
+
 #main {
-	max-height: 35em;
-	height: 65%;
+	max-width: 100%;
+	height: 20em;
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: black;	
 }
 
 .slide-one {
 	position: absolute;
-	top: 30%;
-	left: 40%;
-	z-index: 300;
+	top: 20em;
+	left: 30%;
+	z-index: 400;
 }
 
 .slide-two {
 	position: absolute;
-	top: 30%;
-	left: 45%;	
-	z-index: 200;
+	top: 12em;
+	left: 40%;	
+	z-index: 300;
 	
 	transform: rotate(3deg);
 	-ms-transform: rotate(3deg);
@@ -76,19 +101,30 @@ div {
 
 .slide-three {
 	position: absolute;
-	top: 35%;
-	left: 50%;
-	z-index: 100;
+	top: 12.5em;
+	left: 45%;
+	z-index: 200;
 	
 	transform: rotate(3.5deg);
 	-ms-transform: rotate(3.5deg);
 	-webkit-transform: rotate(3.5deg);
 }
 
+.slide-four {
+	position: absolute;
+	top: 12em;
+	left: 50%;
+	z-index: 100;
+	
+	transform: rotate(4deg);
+	-ms-transform: rotate(4deg);
+	-webkit-transform: rotate(4deg);
+}
+
 .slide {	
 	box-shadow: 10px 15px 50px #000000;
-	max-width: 50%;
-	max-height: 50%;
+	max-width: 40%;
+	max-height: 40%;
 }
 
 .inactive-slide {
@@ -113,18 +149,21 @@ div {
 
 #set-description {
 	overflow: hidden;
+	opacity: 0.4;
 	text-align: right;
 	text-transform: uppercase;	
 	font-style:italic;
-	font-size: 6.5em;
+	font-size: 3em;
 	float: right;
 	color: white;
-	width: 50%;
-	height: 90%;
+	width: 40%;
+	height: 100%;
 }
 
 footer {
-	//height: 40%;
+	padding-right: 1em;
+	text-align: right;
+	font-size: 0.75em;
 }
 		
 </style>
@@ -132,9 +171,15 @@ footer {
 
 <body onload="init()">
 	
-	<div id="intro">hello, my name is jemma.</div>
+	<div id="bar"></div>
+	
+	<div id="intro">hello, my name is <span id="me" class="font-effect-outline">Jemma</span>.</div>
 	
 	<div id="byline">graphic designer, photographer.</div>
+	
+	<div id="bio">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend bibendum magna, at vestibulum diam pharetra vel. Curabitur ut elementum mi. Suspendisse posuere ligula consequat dolor euismod sit amet viverra dolor sagittis. Nullam tristique rutrum diam, ut placerat magna vulputate ut.
+	</div>
 	
 	<div id="main" class="grey-gradient">
 		
@@ -145,13 +190,15 @@ footer {
 		<img class="slide slide-two"></img>
 
 		<img class="slide slide-three"></img>
+		
+		<img class="slide slide-four"></img>
 
-		<div id="set-description"></div>
+		<div id="set-description" class="font-effect-outline"></div>
 		
 	</div>
 	
 	<footer>
-		foot
+		copyright 2013.
 	</footer>
 
 </body>
