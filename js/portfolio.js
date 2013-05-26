@@ -55,20 +55,19 @@ function loadPortfolio(){
 		}
 	});
 	
-	$("#set-title").html(portfolioDefn[slideSetIndex].title);
+	showTitles();
+	
 	$("#set-description").html(portfolioDefn[slideSetIndex].description);
 	
 }
 
-function chooseClass(index){
-	switch(index){
-		case 0:
-			return "slide slide-one";
-		case 1:
-			return "slide slide-two";
-		case 2:
-			return "slide slide-three";
-	}
+function showTitles(){
+	var output = "";
+	$.each(portfolioDefn, function(k, e){
+		var link = "<a>" + e.title + "</a><br>";
+		output += link;
+	});
+	$("#set-titles").html(output);
 }
 
 function shiftSlides(direction){

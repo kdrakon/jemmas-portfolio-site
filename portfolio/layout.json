@@ -1,6 +1,6 @@
 [
 {
-	"title" : "set one",
+	"title" : "photography",
 	"description" : "description goes here",
 	"images" : [
 		"portfolio/demo/image1.jpg",
@@ -10,7 +10,7 @@
 	]
 },
 {
-	"title" : "set two",
+	"title" : "design",
 	"description" : "description2 goes here",
 	"images" : [
 		"portfolio/demo2/image2.jpg",
