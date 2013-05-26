@@ -1,4 +1,4 @@
-var portfolioDefn;
+var portfolioDefn = new Array();
 var slides = new Array();
 var slideIndex = 0;
 var slideSetIndex = 0;
@@ -18,10 +18,12 @@ function init(){
 				shiftSlides(-1);			
 				break;
 			case 38:
-				changeSlidesSet("up");
+				// up
+				changeSlidesSet(1);
 				break;
 			case 40:
-				changeSlidesSet("down");
+				// down
+				changeSlidesSet(-1);
 				break;
 		}		
 	});
@@ -31,23 +33,30 @@ function getPortfolioDefinition(jsonLocation){
 
 	$.getJSON(jsonLocation, function(data){
 		portfolioDefn = data;
-		loadPortfolio(slideSetIndex);
+		loadPortfolio();
 	});
 		
 }
 
-function loadPortfolio(setIndex){
+function loadPortfolio(){
 	
 	slides = new Array();	
 
-	for (var i = 0; i < portfolioDefn[setIndex].images.length; i++){
+	for (var i = 0; i < portfolioDefn[slideSetIndex].images.length; i++){
 		slides[i] = new Image();
-		slides[i].src = portfolioDefn[setIndex].images[i];
+		slides[i].src = portfolioDefn[slideSetIndex].images[i];
 	}
 	
-	$(".portfolio-image").each(function(k, e){
-		$(e).attr('src', slides[k].src);
+	$(".slide").each(function(k, e){
+		if (k == 0){
+			$(e).attr('src', slides[k].src).removeClass("inactive-slide");
+		} else {
+			$(e).attr('src', slides[k].src).addClass("inactive-slide");
+		}
 	});
+	
+	$("#set-title").html(portfolioDefn[slideSetIndex].title);
+	$("#set-description").html(portfolioDefn[slideSetIndex].description);
 	
 }
 
@@ -62,68 +71,38 @@ function chooseClass(index){
 	}
 }
 
-function resetSlide(k, e){
-	$(e).removeClass()
-	.removeAttr('style')
-	.addClass(chooseClass(k));
-}
-
 function shiftSlides(direction){
 	
 	slideIndex += direction;
+	if (slideIndex < 0) slideIndex = portfolioDefn[slideSetIndex].images.length - 1;
+	if (slideIndex >= portfolioDefn[slideSetIndex].images.length) slideIndex = 0;
 	
-	//var toAttach = new Array();
-	//var indexDir;
-	
-	//if (direction == "right") {
-		//indexDir = new Array(2,0,1);
-	//} else if (direction == "left") {
-		//indexDir = new Array(1,2,0);
-	//}
-	
-	//$(".slide").each(function(k, e){
-		//toAttach[indexDir[k]] = $(e).fadeOut(100)
-		//.removeClass()
-		//.addClass(chooseClass(indexDir[k]))
-		//.fadeIn(600)
-		//.detach();
-	//});
-	
-	//$.each(toAttach, function(k, e){
-		//e.appendTo("#main");
-	//});
+	var i;
+	$(".slide").each(function(k, e){
+		i = (slideIndex+k) % portfolioDefn[slideSetIndex].images.length;
+		if (k == 0){
+			$(e).fadeOut(100).attr("src", slides[i].src).removeClass("inactive-slide").fadeIn(400);
+		} else {
+			$(e).fadeOut(100).attr("src", slides[i].src).addClass("inactive-slide").fadeIn(1000);			
+		}
+	});
 		
 }
 
 function changeSlidesSet(direction){
 	
-	var speed = 400;
-	var destination;
-	
-	if (direction == "up") {
-		destination = '-100%';
-	} else if (direction == "down") {
-		destination = '50%';
-	}
+	slideSetIndex += direction;
+	if (slideSetIndex < 0) slideSetIndex = portfolioDefn.length - 1;
+	if (slideSetIndex >= portfolioDefn.length) slideSetIndex = 0;
 	
 	$(".slide").each(function(k, e){
-				
-		$(e).animate(
-		{
-			opacity: 0,
-			top: destination
-		},
-		{
-			duration: speed,
-			complete: function(){
-				$(e)
-				.removeAttr('style')
-				.removeClass()
-				.addClass(chooseClass(k));
-			}
-		}
-		);
-		
+		$(e).fadeOut(400);
 	});
 	
+	slideIndex = 0;	
+	loadPortfolio();
+	
+	$(".slide").each(function(k, e){
+		$(e).fadeIn(400);
+	});		
 }

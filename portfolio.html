@@ -6,7 +6,6 @@
 <style type="text/css">
 
 html, body {
-	background-color: green;
 	margin: 0;
 	margin-left: auto;
 	margin-right: auto;
@@ -15,63 +14,68 @@ html, body {
 }
 
 #crossbar {
-	background-color: pink;
 	height: 3%
 }
 
 #main {
 	background-color: grey;
-	height: 25em;
+	height: 65%;
+}
+
+#set-title {
+
 }
 
 footer {
-	background-color: red;
-	//height: 30%;
+	//height: 40%;
 }
 
-.slide {
+.slide-one {
+	position: absolute;
+	top: 15%;
+	left: 30%;
+	z-index: 300;
+}
+
+.slide-two {
+	position: absolute;
+	top: 12%;
+	left: 35%;	
+	z-index: 200;
+}
+
+.slide-three {
+	position: absolute;
+	top: 8%;
+	left: 40%;
+	z-index: 100;
+}
+
+.slide {	
+	box-shadow: 10px 15px 50px #000000;
+	max-width: 50%;
+	max-height: 50%;
+	
 	transform: skew(0deg, 1.5deg);
 	-ms-transform: skew(0deg, 1.5deg);
 	-webkit-transform: skew(0deg, 1.5deg);
 }
 
-.slide-one {
-	//background-color: yellow;
-	height: 100%;
-	width: 60%;
-	float: right;
-	position: relative;
-	top: 8%;
-	left: -10%;
-	z-index: 300;
+.inactive-slide {
+	filter: grayscale(100%);
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
 }
 
-.slide-two {
-	//background-color: purple;
-	height: 90%;
-	width: 40%;
-	float: right;
-	position: relative;
-	top: 13%;
-	left: 55%;	
-	z-index: 200;
-}
-
-.slide-three {
-	//background-color: blue;
-	height: 80%;
-	width: 40%;
-	float: right;	
-	position: relative;
-	top: -65%;
-	left: 60%;
-	z-index: 100;
-}
-
-.portfolio-image {
-	box-shadow: 10px 15px 50px #000000;
-	max-width: 100%;
-	max-height: 100%;
+#set-description {
+	background-color: grey;
+	text-align: right;
+	text-transform: uppercase;	
+	font-style:italic;
+	font-size: 1.5em;
+	z-index: 400;
 }
 		
 </style>
@@ -85,19 +89,17 @@ footer {
 	
 	<div id="main">
 		
-		<div id="slide-one" class="slide slide-one">
-			<img class="portfolio-image"></img>
-		</div>	
+		<div id="set-title"></div>
 		
-		<div id="slide-two" class="slide slide-two">
-			<img class="portfolio-image"></img>
-		</div>
+		<img class="slide slide-one"></img>	
+		
+		<img class="slide slide-two"></img>
 
-		<div id="slide-three" class="slide slide-three">
-			<img class="portfolio-image"></img>
-		</div>					
+		<img class="slide slide-three"></img>
 		
 	</div>
+	
+	<div id="set-description"></div>
 	
 	<footer>
 		foot
