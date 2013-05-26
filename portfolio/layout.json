@@ -1,0 +1,11 @@
+[
+{
+	"description" : "description goes here",
+	"images" : [
+		"portfolio/demo/image1.jpg",
+		"portfolio/demo/image2.jpg",
+		"portfolio/demo/image3.jpg",
+		"portfolio/demo/image4.jpg"
+	]
+}
+]
