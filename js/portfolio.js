@@ -33,18 +33,18 @@ function getPortfolioDefinition(jsonLocation){
 
 	$.getJSON(jsonLocation, function(data){
 		portfolioDefn = data;
-		loadPortfolio();
+		loadPortfolio(slideSetIndex);
 	});
 		
 }
 
-function loadPortfolio(){
+function loadPortfolio(setIndex){
 	
 	slides = new Array();	
 
-	for (var i = 0; i < portfolioDefn[slideSetIndex].images.length; i++){
+	for (var i = 0; i < portfolioDefn[setIndex].images.length; i++){
 		slides[i] = new Image();
-		slides[i].src = portfolioDefn[slideSetIndex].images[i];
+		slides[i].src = portfolioDefn[setIndex].images[i];
 	}
 	
 	$(".slide").each(function(k, e){
@@ -57,14 +57,14 @@ function loadPortfolio(){
 	
 	showTitles();
 	
-	$("#set-description").html(portfolioDefn[slideSetIndex].description);
+	$("#set-description").html(portfolioDefn[setIndex].description);
 	
 }
 
 function showTitles(){
 	var output = "";
 	$.each(portfolioDefn, function(k, e){
-		var link = "<a>" + e.title + "</a><br>";
+		var link = "<a class='set-link' onclick='loadPortfolio(" + k + ")'>" + e.title + "</a><br>";
 		output += link;
 	});
 	$("#set-titles").html(output);
@@ -99,7 +99,7 @@ function changeSlidesSet(direction){
 	});
 	
 	slideIndex = 0;	
-	loadPortfolio();
+	loadPortfolio(slideSetIndex);
 	
 	$(".slide").each(function(k, e){
 		$(e).fadeIn(400);
