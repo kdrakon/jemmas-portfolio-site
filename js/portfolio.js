@@ -19,11 +19,11 @@ function init(){
 				break;
 			case 38:
 				// up
-				changeSlidesSet(1);
+				//changeSlidesSet(1);
 				break;
 			case 40:
 				// down
-				changeSlidesSet(-1);
+				//changeSlidesSet(-1);
 				break;
 		}		
 	});
@@ -80,9 +80,9 @@ function shiftSlides(direction){
 	$(".slide").each(function(k, e){
 		i = (slideIndex+k) % portfolioDefn[slideSetIndex].images.length;
 		if (k == 0){
-			$(e).fadeOut(100).attr("src", slides[i].src).removeClass("inactive-slide").fadeIn(400);
+			$(e).attr("src", slides[i].src).removeClass("inactive-slide");
 		} else {
-			$(e).fadeOut(100).attr("src", slides[i].src).addClass("inactive-slide").fadeIn(1000);			
+			$(e).attr("src", slides[i].src).addClass("inactive-slide");			
 		}
 	});
 		
@@ -94,14 +94,6 @@ function changeSlidesSet(direction){
 	if (slideSetIndex < 0) slideSetIndex = portfolioDefn.length - 1;
 	if (slideSetIndex >= portfolioDefn.length) slideSetIndex = 0;
 	
-	$(".slide").each(function(k, e){
-		$(e).fadeOut(400);
-	});
-	
 	slideIndex = 0;	
-	loadPortfolio(slideSetIndex);
-	
-	$(".slide").each(function(k, e){
-		$(e).fadeIn(400);
-	});		
+	loadPortfolio(slideSetIndex);	
 }

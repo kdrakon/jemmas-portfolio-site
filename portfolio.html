@@ -28,7 +28,7 @@ html, body {
 	border-color: black;
 }
 
-div, footer {
+div, footer, img {
 	//border-style: solid;
 }
 
@@ -83,7 +83,8 @@ div, footer {
 }
 
 #portfolio {
-	width: 50em;
+	overflow: hidden;
+	width: 100%;
 	height: 22em;
 	margin: auto;
 	border-bottom-style: solid;
@@ -93,37 +94,31 @@ div, footer {
 
 .slide-one {
 	position: relative;
-	float: left;
 	left: 1em;
 	z-index: 400;
 }
 
 .slide-two {
 	position: relative;
-	float: right;
-	left: -5em;
-	top: -13em;	
+	left: 2em;
 	z-index: 300;	
-	
-	transform: rotate(2deg);
-	-ms-transform: rotate(2deg);
-	-webkit-transform: rotate(2deg);	
 }
 
 .slide-three {
-	position: relative;	
-	left: 27em;
-	top: -23em;
+	position: relative;
+	left: 3em;
 	z-index: 200;	
-	
-	transform: rotate(2.5deg);
-	-ms-transform: rotate(2.5deg);
-	-webkit-transform: rotate(2.5deg);
 }
 
-.slide {	
+.slide {
 	box-shadow: 10px 15px 50px #000000;	
 	height: 15em;
+	width: auto;
+}
+
+.thumbnail {
+	vertical-align: top;
+	height: 8em;
 	width: auto;
 }
 
@@ -189,11 +184,7 @@ footer {
 		
 		<div id="set-titles"></div>
 
-		<img class="slide slide-one"></img>	
-
-		<img class="slide slide-two"></img>
-
-		<img class="slide slide-three"></img>	
+		<img class="slide slide-one"></img><img class="slide thumbnail slide-two"></img><img class="slide thumbnail slide-three"></img>	
 		
 	</div>
 	
