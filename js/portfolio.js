@@ -11,19 +11,11 @@ function init(){
 		switch(e.keyCode){
 			case 39:
 				// right
-				shiftSlides(1);
+				shiftSlides(1, slideSetIndex);
 				break;
 			case 37:
 				// left
-				shiftSlides(-1);			
-				break;
-			case 38:
-				// up
-				//changeSlidesSet(1);
-				break;
-			case 40:
-				// down
-				//changeSlidesSet(-1);
+				shiftSlides(-1, slideSetIndex);			
 				break;
 		}		
 	});
@@ -40,24 +32,29 @@ function getPortfolioDefinition(jsonLocation){
 
 function loadPortfolio(setIndex){
 	
+	slideSetIndex = setIndex;
+	slideIndex = 0;
+	
 	slides = new Array();	
 
-	for (var i = 0; i < portfolioDefn[setIndex].images.length; i++){
+	for (var i = 0; i < portfolioDefn[slideSetIndex].images.length; i++){
 		slides[i] = new Image();
-		slides[i].src = portfolioDefn[setIndex].images[i];
+		slides[i].src = portfolioDefn[slideSetIndex].images[i];
 	}
 	
 	$(".slide").each(function(k, e){
+		var element = $(e);
 		if (k == 0){
-			$(e).attr('src', slides[k].src).removeClass("inactive-slide");
+			element.attr('src', slides[k].src).removeClass("inactive-slide");
 		} else {
-			$(e).attr('src', slides[k].src).addClass("inactive-slide");
+			element.attr('src', slides[k].src).addClass("inactive-slide");
 		}
+		element.attr("onclick", "showImageModal('" + slides[k].src + "')");
 	});
 	
 	showTitles();
 	
-	$("#set-description").html(portfolioDefn[setIndex].description);
+	$("#set-description").html(portfolioDefn[slideSetIndex].description);
 	
 }
 
@@ -70,30 +67,50 @@ function showTitles(){
 	$("#set-titles").html(output);
 }
 
-function shiftSlides(direction){
+function shiftSlides(direction, setIndex){
 	
 	slideIndex += direction;
-	if (slideIndex < 0) slideIndex = portfolioDefn[slideSetIndex].images.length - 1;
-	if (slideIndex >= portfolioDefn[slideSetIndex].images.length) slideIndex = 0;
+
+	if (slideIndex < 0) slideIndex = portfolioDefn[setIndex].images.length - 1;
+	if (slideIndex >= portfolioDefn[setIndex].images.length) slideIndex = 0;
 	
 	var i;
 	$(".slide").each(function(k, e){
-		i = (slideIndex+k) % portfolioDefn[slideSetIndex].images.length;
+		var element = $(e);
+		i = (slideIndex+k) % portfolioDefn[setIndex].images.length;
 		if (k == 0){
-			$(e).attr("src", slides[i].src).removeClass("inactive-slide");
+			element.attr("src", slides[i].src).removeClass("inactive-slide");
 		} else {
-			$(e).attr("src", slides[i].src).addClass("inactive-slide");			
+			element.attr("src", slides[i].src).addClass("inactive-slide");			
 		}
+		element.attr("onclick", "showImageModal('" + slides[i].src + "')");
+		
+		// shake them
+		element.animate({left: '+=' + direction*(k*4)});
+		element.animate({left: '+=' + direction*-1*(k*4)});
 	});
 		
 }
 
-function changeSlidesSet(direction){
+function showImageModal(imageSrc){
 	
-	slideSetIndex += direction;
-	if (slideSetIndex < 0) slideSetIndex = portfolioDefn.length - 1;
-	if (slideSetIndex >= portfolioDefn.length) slideSetIndex = 0;
+	var image = $("#fullscreen-image");
 	
-	slideIndex = 0;	
-	loadPortfolio(slideSetIndex);	
+	image.hide();
+	image.attr("src", imageSrc);
+	
+	var left = ($("body").width() - image.width())/2;
+	var top = ($("body").height() - image.height())/2;
+	
+	image.css("left", left);
+	image.css("top", top);
+	image.css("margin", "auto");
+	
+	image.show();
+	
+}
+
+function hideImageModal(){
+	var image = $("#fullscreen-image");
+	image.hide();
 }

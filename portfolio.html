@@ -44,29 +44,25 @@ div, footer, img {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#b7b7b7',GradientType=0 );
 }
 
-#logo {
-	margin: auto;
-	width: 50%;
-	height: 5em;
-	text-align: center;
+.logo {
+	height: 3em;
+	float: left;
+	margin-right: 1em;
 }
 
 #intro {
 	margin: auto;
 	width: 50%;
 	text-align: left;
-	padding-top: 0.1em;
-	font-size: 3em;
-}
-
-#me {
-	color: #EBC137
+	padding-top: 0.5em;
+	font-size: 2.5em;
 }
 
 #byline {
 	margin: auto;
 	width: 50%;
 	text-align: right;
+	margin-top: 2em;
 	margin-bottom: 0.5em;
 	font-style: italic;
 	font-size: 1.25em;
@@ -95,6 +91,7 @@ div, footer, img {
 .slide-one {
 	position: relative;
 	left: 1em;
+	max-height: 90%;
 	z-index: 400;
 }
 
@@ -112,14 +109,14 @@ div, footer, img {
 
 .slide {
 	box-shadow: 10px 15px 50px #000000;	
-	height: 15em;
-	width: auto;
+	cursor: pointer;	
 }
 
 .thumbnail {
 	vertical-align: top;
-	height: 8em;
+	height: 10em;
 	width: auto;
+	max-width: 17em;
 }
 
 .inactive-slide {
@@ -145,14 +142,24 @@ div, footer, img {
 #set-description {
 	overflow: hidden;
 	margin: auto;
-	width: 14em;
+	width: 60%;
 	position: relative;
-	top: 6em;
+	top: 35%;
 	opacity: 0.4;
 	text-align: right;
 	text-transform: uppercase;
-	font-size: 3.5em;
+	font-size: 2.5em;
 	color: white;
+}
+
+#fullscreen-image {
+	position: absolute;
+	cursor: pointer;
+	max-height: 75%;	
+	margin: 0px auto;
+	z-index: 1100;
+	border-style: solid;
+	border-width: 1px;
 }
 
 footer {
@@ -168,9 +175,7 @@ footer {
 	
 	<div id="bar"></div>
 	
-	<div id="logo">logo</div>
-	
-	<div id="intro">hello, my name is <span id="me" class="font-effect-outline">Jemma</span>.</div>
+	<div id="intro"><img class="logo" src="images/JETlogo.jpg"></img> hello, my name is Jemma.</div>
 	
 	<div id="byline">graphic designer, photographer.</div>
 	
@@ -186,6 +191,10 @@ footer {
 
 		<img class="slide slide-one"></img><img class="slide thumbnail slide-two"></img><img class="slide thumbnail slide-three"></img>	
 		
+	</div>
+	
+	<div id="image-modal">
+		<img id="fullscreen-image" onclick="hideImageModal()"></img>
 	</div>
 	
 <!--
