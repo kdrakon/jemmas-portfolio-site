@@ -40,7 +40,7 @@ def scanPortfolio(dir):
 				description = "".join(descriptionLines[0:len(descriptionLines)])
 				
 				images = list()
-				images = filter(lambda f : find(f, ".jpg") > 0, step[dirfiles])
+				images = filter(lambda f : find(f.lower(), ".jpg") > 0, step[dirfiles])
 				images = map(lambda i : path.join(step[topdir], i), images)
 				
 				portfolioSet = dict()
