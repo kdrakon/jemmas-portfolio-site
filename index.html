@@ -5,6 +5,7 @@
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="js/portfolio.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Copse&effect=outline' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
 <style type="text/css">
 
@@ -22,7 +23,7 @@ html, body {
 #bar {
 	background-color: #EBC137;
 	width: 100%;
-	height: 1em;
+	height: 0.3em;
 	border-bottom-style: solid;
 	border-width: 1px;
 	border-color: black;
@@ -30,18 +31,6 @@ html, body {
 
 div, footer, img {
 	//border-style: solid;
-}
-
-.grey-gradient {
-	
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNiN2I3YjciIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(183,183,183,1) 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(183,183,183,1)));
-	background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
-	background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
-	background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(183,183,183,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#b7b7b7',GradientType=0 );
 }
 
 .logo {
@@ -53,14 +42,17 @@ div, footer, img {
 #intro {
 	margin: auto;
 	width: 50%;
+	min-width: 447px;
 	text-align: left;
 	padding-top: 0.5em;
-	font-size: 2.5em;
+	font-size: 2.7em;
+	font-family: 'Pacifico', serif;
 }
 
 #byline {
 	margin: auto;
 	width: 50%;
+	min-width: 447px;
 	text-align: right;
 	margin-top: 2em;
 	margin-bottom: 0.5em;
@@ -71,27 +63,34 @@ div, footer, img {
 #bio {
 	margin: auto;
 	width: 50%;
+	min-width: 447px;
 	border-top-style: solid;
 	border-width: 1px;
 	padding-left: 1em;
 	padding-top: 1em;
+	padding-bottom: 0.5em;
 	margin-bottom: 1em;
 }
 
 #portfolio {
-	overflow: hidden;
 	width: 100%;
-	height: 22em;
+	min-width: 447px;
+	height: 24em;
 	margin: auto;
 	border-bottom-style: solid;
 	border-width: 1px;
 	border-color: black;
 }
 
+#slide-set {
+	height: 85%;
+	overflow: hidden;
+}
+
 .slide-one {
 	position: relative;
 	left: 1em;
-	max-height: 90%;
+	max-height: 80%;
 	z-index: 400;
 }
 
@@ -108,7 +107,7 @@ div, footer, img {
 }
 
 .slide {
-	box-shadow: 10px 15px 50px #000000;	
+	box-shadow: 10px 15px 20px #000000;	
 	cursor: pointer;	
 }
 
@@ -139,19 +138,6 @@ div, footer, img {
 	float: left;
 }
 
-#set-description {
-	overflow: hidden;
-	margin: auto;
-	width: 60%;
-	position: relative;
-	top: 35%;
-	opacity: 0.4;
-	text-align: right;
-	text-transform: uppercase;
-	font-size: 2.5em;
-	color: white;
-}
-
 #fullscreen-image {
 	position: absolute;
 	cursor: pointer;
@@ -162,13 +148,37 @@ div, footer, img {
 	border-width: 1px;
 }
 
-footer {
-	padding-right: 1em;
+#slide-controls {
+	width: 40%;
+	margin: auto;
+	padding-top: 2em;
 	text-align: right;
+	vertical-align: top;
+	font-size: 0.8em;
+	font-style: italic;
+}
+
+.control-key {
+	height: 2.2em;
+	cursor: pointer;
+}
+
+footer {
+	width: 50%;
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	height: 1em;
+	margin: 0px auto;
 	font-size: 0.75em;
 }
 		
 </style>
+
+<title>Jemma Elise Tockuss - Graphic Designer, Photographer</title>
+<link rel="icon" type="image/ico" href="images/JETlogo.jpg"/>
+<meta name="description" content="Personal website of Graphic Designer and Photographer, Jemma Elise Tockuss" />
+
 </head>
 
 <body onload="init()">
@@ -180,28 +190,26 @@ footer {
 	<div id="byline">graphic designer, photographer.</div>
 	
 	<div id="bio">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eleifend bibendum magna, at vestibulum diam pharetra vel. Curabitur ut elementum mi. Suspendisse posuere ligula consequat dolor euismod sit amet viverra dolor sagittis. Nullam tristique rutrum diam, ut placerat magna vulputate ut.
+		My grandfather gave me his old SLR when I was about 14 years old. I was <i>hooked</i>. Although I've upgraded my camera since then, I still have his camera and use it when I want to reminisce.
+		<p>
+		During my studies, graphic design became a stronger focus and has become such a massive part of my life and indeed a career that I love.
 	</div>
-
-	<div id="set-description" class="font-effect-outline"></div>
 	
-	<div id="portfolio" class="grey-gradient">
-		
+	<div id="portfolio">		
 		<div id="set-titles"></div>
-
-		<img class="slide slide-one"></img><img class="slide thumbnail slide-two"></img><img class="slide thumbnail slide-three"></img>	
-		
+		<div id="slide-set">
+		<img class="slide slide-one"></img><img class="slide thumbnail slide-two"></img><img class="slide thumbnail slide-three"></img>
+		</div>
+		<div id="slide-controls">
+			click<img class="control-key" onclick="uiShiftSlides(-1)" src="images/Arrowbuttons-01.png"/>or<img class="control-key" onclick="uiShiftSlides(1)" src="images/Arrowbuttons-02.png"/>to see more
+		</div>
 	</div>
 	
 	<div id="image-modal">
 		<img id="fullscreen-image" onclick="hideImageModal()"></img>
 	</div>
 	
-<!--
-	<footer>
-		
-	</footer>
--->
+	<footer><i>Copyright 2013, Jemma Elise Tockuss, jemmaelise@live.com</i></footer>
 
 </body>
 </html>

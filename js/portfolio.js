@@ -49,12 +49,11 @@ function loadPortfolio(setIndex){
 		} else {
 			element.attr('src', slides[k].src).addClass("inactive-slide");
 		}
-		element.attr("onclick", "showImageModal('" + slides[k].src + "')");
+		element.attr("onclick", "showImageModal('" + k + "')");
+		element.attr("id", "image_" + k);
 	});
 	
 	showTitles();
-	
-	$("#set-description").html(portfolioDefn[slideSetIndex].description);
 	
 }
 
@@ -65,6 +64,11 @@ function showTitles(){
 		output += link;
 	});
 	$("#set-titles").html(output);
+}
+
+// refactored helper method for frontend
+function uiShiftSlides(direction) {
+	shiftSlides(direction, slideSetIndex);
 }
 
 function shiftSlides(direction, setIndex){
@@ -83,7 +87,8 @@ function shiftSlides(direction, setIndex){
 		} else {
 			element.attr("src", slides[i].src).addClass("inactive-slide");			
 		}
-		element.attr("onclick", "showImageModal('" + slides[i].src + "')");
+		element.attr("onclick", "showImageModal('" + i + "')");
+		element.attr("id", "image_" + i);
 		
 		// shake them
 		element.animate({left: '+=' + direction*(k*4)});
@@ -92,9 +97,10 @@ function shiftSlides(direction, setIndex){
 		
 }
 
-function showImageModal(imageSrc){
+function showImageModal(imageIndex){
 	
 	var image = $("#fullscreen-image");
+	var imageSrc = $("#image_" + imageIndex).attr("src");
 	
 	image.hide();
 	image.attr("src", imageSrc);

@@ -28,27 +28,20 @@ def scanPortfolio(dir):
 	
 	listing = walk(dir)
 	
-	for step in listing:
-		for foundFile in step[dirfiles]:
-			if find(foundFile, ".txt") > 0:
-				
-				print "found " + foundFile + " in " + step[topdir]
-				title = rsplit(step[topdir], sep, 1)[1]				
-				print "creating portfolio set named '" + title + "'"
-				
-				descriptionLines = (open(path.join(step[topdir], foundFile), 'r')).readlines()
-				description = "".join(descriptionLines[0:len(descriptionLines)])
-				
-				images = list()
-				images = filter(lambda f : find(f.lower(), ".jpg") > 0, step[dirfiles])
-				images = map(lambda i : path.join(step[topdir], i), images)
-				
-				portfolioSet = dict()
-				portfolioSet['title'] = title
-				portfolioSet['description'] = description
-				portfolioSet['images'] = images
-				
-				output.append(portfolioSet)
+	for step in listing:			
+		title = rsplit(step[topdir], sep, 1)[1]
+		if title != "":			
+			print "creating portfolio set named '" + title + "'"
+			
+			images = list()
+			images = filter(lambda f : find(f.lower(), ".jpg") > 0, step[dirfiles])
+			images = map(lambda i : path.join(step[topdir], i), images)
+			
+			portfolioSet = dict()
+			portfolioSet['title'] = title
+			portfolioSet['images'] = images
+			
+			output.append(portfolioSet)
 	
 	layoutFile = open(path.join(dir, "layout.json"), 'w')
 	layoutFile.write(JSONEncoder().encode(output))
