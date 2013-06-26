@@ -2,6 +2,7 @@ var portfolioDefn = new Array();
 var slides = new Array();
 var slideIndex = 0;
 var slideSetIndex = 0;
+var lastTouchX = 0;
 
 function init(){
 	
@@ -20,6 +21,31 @@ function init(){
 				break;
 		}		
 	});
+	
+	// some touch mapping
+	var portfolioDiv = document.getElementById("portfolio");
+	portfolioDiv.addEventListener("touchmove", handleSwipe, false);
+}
+
+function handleSwipe(evt){
+	
+	var touchlist = evt.changedTouches;
+	var swipeDirection = 0;
+	
+	//for (var i = 0; i < touchlist.length; i++){
+		//var currentTouchX = touchlist[touchlist.length-1].clientX;
+		//if (currentTouchX < lastTouchX){
+			//// swiped left
+			//swipeDirection = -1;
+		//} else if (currentTouchX > lastTouchX) {
+			//// swiped right
+			//swipeDirection = 1;
+		//}
+		//lastTouchX = currentTouchX;
+	//}
+	
+	//uiShiftSlides(swipeDirection);
+		
 }
 
 // gets portfolio JSON and preloads all images
@@ -29,7 +55,7 @@ function getPortfolioDefinition(jsonLocation){
 		portfolioDefn = data;
 		
 		// preload all sets
-		for (var i = 0; i < portfolioDefn.size; i++){
+		for (var i = 0; i < portfolioDefn.length; i++){
 			loadPortfolio(i);
 		}
 		
