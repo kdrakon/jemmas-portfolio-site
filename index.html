@@ -23,7 +23,7 @@ html, body {
 #bar {
 	background-color: #EBC137;
 	width: 100%;
-	height: 0.3em;
+	height: 0.5em;
 	border-bottom-style: solid;
 	border-width: 1px;
 	border-color: black;
@@ -77,20 +77,21 @@ div, footer, img {
 	min-width: 447px;
 	height: 24em;
 	margin: auto;
-	border-bottom-style: solid;
-	border-width: 1px;
-	border-color: black;
+	display: inline-block;
+	overflow: hidden;
 }
 
 #slide-set {
-	height: 85%;
+	position: absolute;
 	overflow: hidden;
+	display: inline-block;
+	min-width: 1000px;
 }
 
 .slide-one {
 	position: relative;
 	left: 1em;
-	max-height: 80%;
+	max-height: 20em;
 	z-index: 400;
 }
 
@@ -149,13 +150,17 @@ div, footer, img {
 }
 
 #slide-controls {
-	width: 40%;
+	position: relative;
+	width: 100%;
 	margin: auto;
-	padding-top: 2em;
-	text-align: right;
+	padding-bottom: 1em;
+	text-align: center;
 	vertical-align: top;
 	font-size: 0.8em;
 	font-style: italic;
+	border-bottom-style: solid;
+	border-width: 1px;
+	border-color: black;	
 }
 
 .control-key {
@@ -190,9 +195,9 @@ footer {
 	<div id="byline">graphic designer, photographer.</div>
 	
 	<div id="bio">
-		My grandfather gave me his old SLR when I was about 14 years old. I was <i>hooked</i>. Although I've upgraded my camera since then, I still have his camera and use it when I want to reminisce.
+		My grandfather gave me his old SLR when I was about 14 years old. I was immediately <i>hooked</i>. Although I've upgraded my camera since then, I still have and use his when I want to reminisce with film photography, a medium that should never be lost.
 		<p>
-		During my studies, graphic design became a stronger focus and has become such a massive part of my life and indeed a career that I love.
+		During university, graphic design became an equally important passion in my life. It is a career that I <i>love</i>.
 	</div>
 	
 	<div id="portfolio">		
@@ -200,9 +205,9 @@ footer {
 		<div id="slide-set">
 		<img class="slide slide-one"></img><img class="slide thumbnail slide-two"></img><img class="slide thumbnail slide-three"></img>
 		</div>
-		<div id="slide-controls">
-			click<img class="control-key" onclick="uiShiftSlides(-1)" src="images/Arrowbuttons-01.png"/>or<img class="control-key" onclick="uiShiftSlides(1)" src="images/Arrowbuttons-02.png"/>to see more
-		</div>
+	</div>
+	<div id="slide-controls">
+		click<img class="control-key" onclick="uiShiftSlides(-1)" src="images/Arrowbuttons-01.png"/>or<img class="control-key" onclick="uiShiftSlides(1)" src="images/Arrowbuttons-02.png"/>to see more
 	</div>
 	
 	<div id="image-modal">

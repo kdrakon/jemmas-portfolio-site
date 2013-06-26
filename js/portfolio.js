@@ -5,8 +5,9 @@ var slideSetIndex = 0;
 
 function init(){
 	
-	portfolioDefn = getPortfolioDefinition('portfolio/layout.json');
+	getPortfolioDefinition('portfolio/layout.json');
 	
+	// some key mapping
 	$(document).keyup(function(e){
 		switch(e.keyCode){
 			case 39:
@@ -21,13 +22,22 @@ function init(){
 	});
 }
 
+// gets portfolio JSON and preloads all images
 function getPortfolioDefinition(jsonLocation){	
 
 	$.getJSON(jsonLocation, function(data){
 		portfolioDefn = data;
-		loadPortfolio(slideSetIndex);
-	});
 		
+		// preload all sets
+		for (var i = 0; i < portfolioDefn.size; i++){
+			loadPortfolio(i);
+		}
+		
+		// show first portfolio set	
+		slideSetIndex = 0;
+		showPortfolio(slideSetIndex);
+		
+	});		
 }
 
 function loadPortfolio(setIndex){
@@ -40,8 +50,13 @@ function loadPortfolio(setIndex){
 	for (var i = 0; i < portfolioDefn[slideSetIndex].images.length; i++){
 		slides[i] = new Image();
 		slides[i].src = portfolioDefn[slideSetIndex].images[i];
-	}
+	}	
+}
+
+function showPortfolio(setIndex){
 	
+	loadPortfolio(setIndex);
+
 	$(".slide").each(function(k, e){
 		var element = $(e);
 		if (k == 0){
@@ -53,14 +68,13 @@ function loadPortfolio(setIndex){
 		element.attr("id", "image_" + k);
 	});
 	
-	showTitles();
-	
+	showTitles();	
 }
 
 function showTitles(){
 	var output = "";
 	$.each(portfolioDefn, function(k, e){
-		var link = "<a class='set-link' onclick='loadPortfolio(" + k + ")'>" + e.title + "</a><br>";
+		var link = "<a class='set-link' onclick='showPortfolio(" + k + ")'>" + e.title + "</a><br>";
 		output += link;
 	});
 	$("#set-titles").html(output);
@@ -112,8 +126,7 @@ function showImageModal(imageIndex){
 	image.css("top", top);
 	image.css("margin", "auto");
 	
-	image.show();
-	
+	image.show();	
 }
 
 function hideImageModal(){
