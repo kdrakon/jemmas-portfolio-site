@@ -1,10 +1,16 @@
 var portfolioDefn = new Array();
 var slides = new Array();
 var slideSetIndex = 0;
+var scrollInterval = null;
 
 function init(){
 	
-	getPortfolioDefinition('portfolio/layout.json');
+	getPortfolioDefinition('portfolio/layout.json');	
+	prepareSlideControls();
+	
+}
+
+function prepareSlideControls(){
 	
 	// some key mapping
 	$(document).keyup(function(e){
@@ -17,20 +23,35 @@ function init(){
 				// left
 				//shiftSlides(-1, slideSetIndex);			
 				break;
+			case 36:
+				resetSlideAnimation();
+				break;
 		}		
 	});
 	
-	$('#slide-reset').hide().click(function(){
-		scrollTo(0,0);
-	});
+	var slideReset = $('#slide-reset');
 	
-	$(window).scroll(function(e){
-		if($(window).scrollLeft() != 0){
-			$('#slide-reset').show();
+	$(window).scroll(function(){
+		if ($(this).scrollLeft() > 0){
+			slideReset.show();
 		}else{
-			$('#slide-reset').hide();
+			slideReset.hide();
 		}
 	});
+	
+	slideReset.hide().click(function(){
+		resetSlideAnimation();		
+	});
+}
+
+function resetSlideAnimation(){
+	
+	var x = $(window).scrollLeft();
+	clearInterval(scrollInterval);
+	scrollInterval = setInterval(function(){
+		scrollTo(x-=50,0);
+		if (x <= 0)	clearInterval(scrollInterval);
+	}, 10);	
 	
 }
 
@@ -68,7 +89,8 @@ function loadPortfolio(setIndex){
 	// clear all previous slides
 	$('#slide-set > .slide').remove();
 	
-	// move scroll back to the left
+	// move scroll back to the left and clear the scroll animation
+	clearInterval(scrollInterval);
 	scrollTo(0,0);
 	
 	// reset the portfolio width
@@ -92,39 +114,24 @@ function showImageInPortfolio(image){
 	var slideSetWidth = parseInt(portfolioDiv.css("width").replace("px", ""));
 	
 	// add/show the slide
-	$(image).addClass("slide");
-	slideSetDiv.append(image);
+	slideSetDiv.append(prepareSlideImage(image));
 	
 	// set the width of the portfolio div
 	var newWidth = $(image).position().left + image.width + slideSetWidth;
 	portfolioDiv.css("width", newWidth + "px");	
 	
 	// match the top-bar width with the portfolio width
-	//var barWidth = portfolioDiv.position().left + slideSetWidth;
 	$("#bar").css("width", newWidth + "px");
 }
 
-// deprecated
-function showImageModal(imageIndex){
+function prepareSlideImage(image){
 	
-	var image = $("#fullscreen-image");
-	var imageSrc = $("#image_" + imageIndex).attr("src");
+	$(image).addClass("slide")
+	.click(function(){
+		// move the slide into focus
+		var imageLeft = $(this).position().left - 10;
+		scrollTo(imageLeft, 0);
+	});	
 	
-	image.hide();
-	image.attr("src", imageSrc);
-	
-	var left = ($("body").width() - image.width())/2;
-	var top = ($("body").height() - image.height())/2;
-	
-	image.css("left", left);
-	image.css("top", top);
-	image.css("margin", "auto");
-	
-	image.show();	
-}
-
-// deprecated
-function hideImageModal(){
-	var image = $("#fullscreen-image");
-	image.hide();
+	return image;	
 }

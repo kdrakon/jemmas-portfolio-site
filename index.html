@@ -27,6 +27,7 @@ html, body {
 	border-bottom-style: solid;
 	border-width: 1px;
 	border-color: black;
+	z-index: 1500;
 }
 
 div, footer, img {
@@ -80,8 +81,7 @@ div, footer, img {
 }
 
 footer {
-	position: absolute;
-	top: 52em;
+	padding-top: 5em;
 	text-align: center;
 	font-size: 0.75em;
 }
@@ -103,6 +103,7 @@ footer {
 	box-shadow: 10px 10px 20px #000000;	
 	margin-right: 0.5em;
 	height: 450px;
+	cursor: pointer;
 	z-index: 500;
 }
 
@@ -121,7 +122,7 @@ footer {
 	margin: auto;
 }
 
-#slide-reset {
+#slide-controls {
 	position: fixed;
 	bottom: 1em;
 	right: 1em;
@@ -138,22 +139,6 @@ footer {
 	z-index: 1100;
 	border-style: solid;
 	border-width: 1px;
-}
-
-#slide-controls {
-	position: relative;
-	width: 100%;
-	margin: auto;
-	padding-bottom: 1em;
-	text-align: center;
-	vertical-align: top;
-	font-size: 0.8em;
-	font-style: italic;
-}
-
-.control-key {
-	height: 2.2em;
-	cursor: pointer;
 }
 		
 </style>
@@ -190,16 +175,8 @@ footer {
 		<div id="slide-set"></div>
 	</div>
 	
-	<div id="slide-reset">go home?</div>
-	
-	<!--
-	<div id="slide-controls">
-		click<img class="control-key" onclick="uiShiftSlides(-1)" src="images/Arrowbuttons-01.png"/>or<img class="control-key" onclick="uiShiftSlides(1)" src="images/Arrowbuttons-02.png"/>to see more
-	</div>
-	-->
-	
-	<div id="image-modal">
-		<img id="fullscreen-image" onclick="hideImageModal()"></img>
+	<div id="slide-controls">		
+		<span id="slide-reset">go home?</span>
 	</div>
 
 </body>
