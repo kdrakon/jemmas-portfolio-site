@@ -111,17 +111,25 @@ function showImageInPortfolio(image){
 	
 	var slideSetDiv = $('#slide-set');
 	var portfolioDiv = $('#portfolio');
-	var slideSetWidth = parseInt(portfolioDiv.css("width").replace("px", ""));
+	var portfolioWidth = portfolioDiv.width();
+	var portfolioOffset = portfolioDiv.offset().left;
+	var lastImage = slideSetDiv.find('img').last();
+	
+	var lastImageHeight = 450;
+	if(lastImage.position() != undefined){
+		lastImageHeight = lastImage.height();
+	}
 	
 	// add/show the slide
 	slideSetDiv.append(prepareSlideImage(image));
 	
 	// set the width of the portfolio div
-	var newWidth = $(image).position().left + image.width + slideSetWidth;
+	var newWidth = portfolioWidth + ((lastImageHeight / image.height) * image.width);
 	portfolioDiv.css("width", newWidth + "px");	
 	
 	// match the top-bar width with the portfolio width
-	$("#bar").css("width", newWidth + "px");
+	var barNewWidth = portfolioOffset + newWidth;
+	$("#bar").css("width", barNewWidth + "px");
 }
 
 function prepareSlideImage(image){
