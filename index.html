@@ -21,7 +21,7 @@ html, body {
 }
 
 #bar {
-	background-color: #EBC137;
+	background-color: black;
 	width: 100%;
 	height: 0.5em;
 	border-bottom-style: solid;
@@ -39,15 +39,16 @@ div, footer, img {
 	height: 100%;
 	width: 18em;
 	left: 1em;
-	padding-right: 0.5em;
+	padding-right: 0.65em;
+	padding-left: 0.5em;
 	z-index: 1000;
 	background-image:url('images/TransparentBackground.png');
 }
 
 .logo {
-	height: 3em;
+	height: 3.2em;
 	float: left;
-	margin-right: 1em;
+	margin-right: 0.25em;
 }
 
 #intro {
@@ -88,47 +89,21 @@ footer {
 #portfolio {
 	position: relative;
 	left: 20em;
-	top: 10em;
-	min-width: 100%;
-	height: 30em;
+	top: 8em;
+	min-width: 5000px;
 }
 
 #slide-set {
 	position: relative;
 	display: inline-block;
 	height: 100%;
-	width: 100%;
-}
-
-.slide-one {
-	position: relative;
-	left: 1em;
-	max-height: 20em;
-	z-index: 400;
-}
-
-.slide-two {
-	position: relative;
-	left: 2em;
-	z-index: 300;	
-}
-
-.slide-three {
-	position: relative;
-	left: 3em;
-	z-index: 200;	
 }
 
 .slide {
-	box-shadow: 10px 15px 20px #000000;	
-	cursor: pointer;	
-}
-
-.thumbnail {
-	vertical-align: top;
-	height: 10em;
-	width: auto;
-	max-width: 17em;
+	box-shadow: 10px 10px 20px #000000;	
+	margin-right: 0.5em;
+	height: 450px;
+	z-index: 500;
 }
 
 .inactive-slide {
@@ -144,6 +119,15 @@ footer {
 	font-size: 1.2em;
 	width: 90%;
 	margin: auto;
+}
+
+#slide-reset {
+	position: fixed;
+	bottom: 1em;
+	right: 1em;
+	font-family: 'Pacifico', serif;
+	font-size: 1.5em;
+	cursor: pointer;
 }
 
 #fullscreen-image {
@@ -175,7 +159,7 @@ footer {
 </style>
 
 <title>Jemma Elise Tockuss - Graphic Designer, Photographer</title>
-<link rel="icon" type="image/ico" href="images/JETlogo.jpg"/>
+<link rel="icon" type="image/ico" href="images/je-logo.png"/>
 <meta name="description" content="Personal website of Graphic Designer and Photographer, Jemma Elise Tockuss" />
 
 </head>
@@ -186,7 +170,7 @@ footer {
 	
 	<div id="fixed-nav">
 	
-		<div id="intro"><img class="logo" src="images/JETlogo.jpg"></img> hello, my name is Jemma.</div>
+		<div id="intro"><img class="logo" src="images/je-logo.png"></img> hello, my name is Jemma.</div>
 		
 		<div id="byline">graphic designer, photographer.</div>
 		
@@ -203,10 +187,10 @@ footer {
 	</div>
 	
 	<div id="portfolio">		
-		<div id="slide-set">
-			<img class="slide slide-one"></img><img class="slide thumbnail slide-two"></img><img class="slide thumbnail slide-three"></img>
-		</div>
+		<div id="slide-set"></div>
 	</div>
+	
+	<div id="slide-reset">go home?</div>
 	
 	<!--
 	<div id="slide-controls">
