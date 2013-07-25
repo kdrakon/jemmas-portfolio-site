@@ -42,10 +42,28 @@ def scanPortfolio(dir):
 			portfolioSet['images'] = images
 			
 			output.append(portfolioSet)
+			
+	output = sortPortfolios(output)
 	
 	layoutFile = open(path.join(dir, "layout.json"), 'w')
 	layoutFile.write(JSONEncoder().encode(output))
-											
+
+def sortPortfolios(outputList):
+	
+	titleMap = dict()
+	for index, portfolioSet in enumerate(outputList):
+		titleMap[portfolioSet['title']] = index
+
+	titles = titleMap.keys()
+	titles = sorted(titles)
+	
+	sortedOutputList = list()
+	print "new portfolio ordering:"
+	for title in titles:
+		sortedOutputList.append(outputList[titleMap[title]])
+		print "- " + title
+		
+	return sortedOutputList											
 
 if __name__ == "__main__":
 	sys.exit(main())
