@@ -35,10 +35,15 @@ angular.module('portfolio', [])
 					for (var i = 0; i < portfolioDefn[setIndex].images.length; i++){
 						var slide = new Image();
 						slide.src = portfolioDefn[setIndex].images[i];
-						slide.onload = function(){ 
+						slide.onload = function(){
+							var lastSlide = $('.slide').last();
 							$scope.addToPortfolioWidth(this.width);
 							$(this).addClass("slide");
-							$animate.enter(this, $scope.slideSetElement);
+							if (lastSlide.length > 0){
+								$animate.enter(this, $scope.slideSetElement, lastSlide);
+							} else {
+								$animate.enter(this, $scope.slideSetElement);
+							}
 						}
 						$scope.portfolioImageSet.push(slide);
 					}					
