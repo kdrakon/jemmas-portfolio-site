@@ -4,17 +4,21 @@ var minPortfolioWidth = 1080;
 angular.module('portfolio', [])
 	.controller('SlideController', ['$scope', '$animate', function($scope, $animate) {
 		
+		$scope.loadingPortfolio = false;
 		$scope.portfolioImageSet = [];
 		$scope.portfolioSetTitles = [];
 		$scope.portfolioWidth = minPortfolioWidth;
 		$scope.slideSetElement = $('#slide-set');
 		$scope.scrollInterval = 0;
 		
-		$scope.loadPortfolioSet = function(setIndex){	
+		$scope.loadPortfolioSet = function(setIndex){
+			if ($scope.loadingPortfolio) return;
 			$.getJSON('portfolio/layout.json', function(portfolioDefn){		
 				$scope.$apply(function() {
 
 					if (typeof portfolioDefn == 'undefined') return;
+					
+					$scope.loadingPortfolio = true;
 					
 					$scope.resetSlides();
 					$scope.portfolioSetTitles = [];	
@@ -25,6 +29,7 @@ angular.module('portfolio', [])
 						var slide = $scope.portfolioImageSet.pop();
 						$animate.leave(slide);
 					});
+					$('.slide').each(function(){ this.remove() });
 					
 					// load set titles
 					$.each(portfolioDefn, function(i, e){
@@ -46,7 +51,9 @@ angular.module('portfolio', [])
 							}
 						}
 						$scope.portfolioImageSet.push(slide);
-					}					
+					}
+					
+					$scope.loadingPortfolio = false;		
 					
 				});					
 			});	
