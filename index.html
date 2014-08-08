@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="portfolio">
 <head>
 	
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular.min.js"></script>
 <script src="js/portfolio.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -16,18 +17,22 @@ html, body {
 	font-family: 'Muli', serif;
 }
 
-.set-link {
-	cursor: pointer;
-}
-
 #bar {
-	background-color: black;
 	width: 100%;
 	height: 0.5em;
-	border-bottom-style: solid;
-	border-width: 1px;
-	border-color: black;
 	z-index: 1500;
+	
+	background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 51%, rgba(0,0,0,0.65) 52%, rgba(0,0,0,0) 79%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(51%,rgba(0,0,0,0.65)), color-stop(52%,rgba(0,0,0,0.65)), color-stop(79%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* IE10+ */
+	background: linear-gradient(to right,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
+}
+
+.set-link {
+	cursor: pointer;
 }
 
 div, footer, img {
@@ -56,16 +61,6 @@ div, footer, img {
 	vertical-align: baseline;
 	padding-top: 3em;
 	padding-bottom: 1em;
-}
-
-#bio {
-	margin: auto;
-	border-top-style: solid;
-	border-width: 1px;
-	padding-top: 1em;
-	padding-bottom: 0.1em;
-	margin-bottom: 0.1em;
-	font-size: 0.8em;
 }
 
 footer {
@@ -98,18 +93,9 @@ footer {
 	cursor: pointer;
 	z-index: 500;
 }
-
-.inactive-slide {
-	filter: grayscale(100%);
-	-webkit-filter: grayscale(100%);
-	-moz-filter: grayscale(100%);
-	-ms-filter: grayscale(100%);
-	-o-filter: grayscale(100%);
-}
-
 #set-titles {
 	text-align: right;
-	font-size: 1.1em;
+	font-size: 1.2em;
 	text-transform:uppercase;
 	width: 90%;
 	margin: auto;
@@ -123,16 +109,6 @@ footer {
 	font-size: 1.5em;
 	cursor: pointer;
 }
-
-#fullscreen-image {
-	position: absolute;
-	cursor: pointer;
-	max-height: 75%;	
-	margin: 0px auto;
-	z-index: 1100;
-	border-style: solid;
-	border-width: 1px;
-}
 		
 </style>
 
@@ -142,23 +118,17 @@ footer {
 
 </head>
 
-<body onload="init()">
+<body ng-controller="SlideController">
 	
-	<div id="bar"></div>
+	<div id="bar" style="width: {{portfolioWidth}}px"></div>
 	
 	<div id="fixed-nav">
 	
 		<div id="intro"><img class="logo" src="images/JE-Logo-purp-01.png"></img></div>
 		
-		<div id="bio">
-			My grandfather gave me his old SLR when I was 14 years old. I was immediately <i>hooked</i>. Although I've upgraded my camera since then, I still have and use his when I want to reminisce with film photography, a medium that should never be lost.
-			<p>
-			During university, graphic design became an equally important passion in my life. Where photography gave me the ability to <i>capture</i>, graphic design gives me the power to <i>create</i> and explore so many more areas. 
-			<p>
-			Together, they are a career that I <i>love</i>.
+		<div id="set-titles">
+			<a class="set-link" ng-repeat="setTitle in portfolioSetTitles" ng-click="loadPortfolioSet(setTitle.index)">{{setTitle.title}}<br></a>
 		</div>
-		
-		<div id="set-titles"></div>
 		
 		<footer>
 			<div id="social-buttons">
@@ -166,7 +136,7 @@ footer {
 				
 				<a href="https://twitter.com/jemma_elise" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @jemma_elise</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 				
-				<a href="http://ca.linkedin.com/in/jemmaelise" target="_blank" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" alt="View Jemma Elise Tockuss's LinkedIn profile" style="height:18px; border-style:none;" border="0"></span></a>
+				<a href="http://linkedin.com/in/jemmaelise" target="_blank" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" alt="View Jemma Elise Tockuss's LinkedIn profile" style="height:18px; border-style:none;" border="0"></span></a>
 			</div>
 					
 			<i>Copyright 2014, Jemma Elise Tockuss, jemmaelise@live.com</i>
@@ -174,12 +144,12 @@ footer {
 	
 	</div>
 	
-	<div id="portfolio">		
+	<div id="portfolio" style="width: {{portfolioWidth}}px">
 		<div id="slide-set"></div>
 	</div>
 	
 	<div id="slide-controls">		
-		<span id="slide-reset">go home?</span>
+		<span id="slide-reset" ng-click="resetSlides()">scroll this way &#8644;</span>
 	</div>
 
 </body>
