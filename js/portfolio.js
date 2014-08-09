@@ -1,5 +1,6 @@
 
 var minPortfolioWidth = 1080;
+var initialSet = 10;
 
 angular.module('portfolio', [])
 	.controller('SlideController', ['$scope', '$animate', function($scope, $animate) {
@@ -73,7 +74,7 @@ angular.module('portfolio', [])
 		};
 
 		// start the controller
-		var init = function() { $scope.loadPortfolioSet(0); }
+		var init = function() { $scope.loadPortfolioSet(initialSet); }
 		init();
 		
 	}]);

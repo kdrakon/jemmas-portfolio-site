@@ -90,15 +90,18 @@ footer {
 	box-shadow: 10px 10px 20px #000000;	
 	margin-right: 0.5em;
 	height: 450px;
-	cursor: pointer;
 	z-index: 500;
 }
 #set-titles {
 	text-align: right;
-	font-size: 1.2em;
+	font-size: 1.0em;
 	text-transform:uppercase;
 	width: 90%;
 	margin: auto;
+}
+
+.set-link {
+	margin-bottom: 0.15em;
 }
 
 #slide-controls {
@@ -127,7 +130,7 @@ footer {
 		<div id="intro"><img class="logo" src="images/JE-Logo-purp-01.png"></img></div>
 		
 		<div id="set-titles">
-			<a class="set-link" ng-repeat="setTitle in portfolioSetTitles" ng-click="loadPortfolioSet(setTitle.index)">{{setTitle.title}}<br></a>
+			<div class="set-link" ng-repeat="setTitle in portfolioSetTitles" ng-click="loadPortfolioSet(setTitle.index)">{{setTitle.title}}</div>
 		</div>
 		
 		<footer>
