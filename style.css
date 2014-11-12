@@ -1,0 +1,55 @@
+html, body {
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	font-family: 'Muli', serif;
+}
+
+.set-link {
+	cursor: pointer;
+}
+
+div, footer, img {
+	//border-style: solid;border-width: 1px;
+}
+
+.logo-div {
+	width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-set {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    border-width: 0.1em;
+    border-top-style: solid;
+    border-bottom-style: solid;
+}
+
+.portfolio-padding {
+    float: left;
+    width: 15%;
+    height: 15em;
+}
+
+.portfolio-image {
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+    background-position: top;
+    background-size: contain;
+    float: left;
+    height: 15em;
+    width: 11.6%;
+}

@@ -1,159 +1,33 @@
 <!DOCTYPE html>
 <html ng-app="portfolio">
-<head>
-	
-<script src="js/jquery-1.9.1.js"></script>
-<script src="js/angular.min.js"></script>
-<script src="js/portfolio.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-
-<style type="text/css">
-
-html, body {
-	margin: 0;
-	height: 100%;
-	width: 100%;
-	font-family: 'Muli', serif;
-}
-
-#bar {
-	width: 100%;
-	height: 0.5em;
-	z-index: 1500;
-	
-	background: -moz-linear-gradient(left,  rgba(0,0,0,0.65) 51%, rgba(0,0,0,0.65) 52%, rgba(0,0,0,0) 79%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(51%,rgba(0,0,0,0.65)), color-stop(52%,rgba(0,0,0,0.65)), color-stop(79%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* IE10+ */
-	background: linear-gradient(to right,  rgba(0,0,0,0.65) 51%,rgba(0,0,0,0.65) 52%,rgba(0,0,0,0) 79%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=1 ); /* IE6-9 */
-}
-
-.set-link {
-	cursor: pointer;
-}
-
-div, footer, img {
-	//border-style: solid;border-width: 1px;
-}
-
-#fixed-nav {
-	position: fixed;
-	overflow: hidden;
-	height: 100%;
-	width: 17em;
-	left: 1em;
-	padding-right: 0.8em;
-	padding-left: 0.5em;
-	z-index: 1000;
-	background-image:url('images/TransparentBackground.png');
-}
-
-.logo {
-	width: 17em;
-}
-
-#intro {
-	margin: auto;
-	text-align: left;
-	vertical-align: baseline;
-	padding-top: 3em;
-	padding-bottom: 1em;
-}
-
-footer {
-	padding-top: 3em;
-	text-align: center;
-	font-size: 0.75em;
-}
-
-#social-buttons {
-	padding-bottom: 0.1em;
-}
-
-#portfolio {
-	position: relative;
-	left: 20em;
-	top: 8em;
-	min-width: 500px;
-}
-
-#slide-set {
-	position: relative;
-	display: inline-block;
-	height: 100%;
-}
-
-.slide {
-	box-shadow: 10px 10px 20px #000000;	
-	margin-right: 0.5em;
-	height: 450px;
-	z-index: 500;
-}
-#set-titles {
-	text-align: right;
-	font-size: 1.0em;
-	text-transform:uppercase;
-	width: 90%;
-	margin: auto;
-}
-
-.set-link {
-	margin-bottom: 0.15em;
-}
-
-#slide-controls {
-	position: fixed;
-	bottom: 1em;
-	right: 1em;
-	font-family: 'Pacifico', serif;
-	font-size: 1.5em;
-	cursor: pointer;
-}
+	<head>
 		
-</style>
+		<script src="js/jquery-1.9.1.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/portfolio.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href="style.css" rel="stylesheet" type="text/css">
 
-<title>Jemma Elise Tockuss - Graphic Designer, Photographer</title>
-<link rel="icon" type="image/ico" href="images/je-logo.png"/>
-<meta name="description" content="Personal website of Graphic Designer and Photographer, Jemma Elise Tockuss" />
+		<title>Jemma Elise Tockuss - Graphic Designer, Photographer</title>
+		<link rel="icon" type="image/ico" href="images/je-logo.png"/>
+		<meta name="description" content="Personal website of Graphic Designer and Photographer, Jemma Elise Tockuss" />
 
-</head>
+	</head>
 
-<body ng-controller="SlideController">
-	
-	<div id="bar" style="width: {{portfolioWidth}}px"></div>
-	
-	<div id="fixed-nav">
-	
-		<div id="intro"><img class="logo" src="images/JE-Logo-purp-01.png"></img></div>
+	<body ng-controller="PortfolioController">
 		
-		<div id="set-titles">
-			<div class="set-link" ng-repeat="setTitle in portfolioSetTitles" ng-click="loadPortfolioSet(setTitle.index)">{{setTitle.title}}</div>
+		<div class="logo-div">
+			<img style="width:100%" src="images/JE-Logo-purp-01.png"/>
 		</div>
 		
-		<footer>
-			<div id="social-buttons">
-				<a href="http://www.flickr.com/photos/jemmaelisedesign/sets" target="_blank" title="See my photos on Flickr!"><img src="http://l.yimg.com/g/images/goodies/white-flickr.png" style="height:18px" alt=""></a>
-				
-				<a href="https://twitter.com/jemma_elise" class="twitter-follow-button" data-show-count="false" data-show-screen-name="false">Follow @jemma_elise</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-				
-				<a href="http://linkedin.com/in/jemmaelise" target="_blank" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" alt="View Jemma Elise Tockuss's LinkedIn profile" style="height:18px; border-style:none;" border="0"></span></a>
+		<div class="portfolio">
+			<div class="portfolio-set" ng-repeat="portfolioSet in portfolio">
+				<div class="portfolio-padding"></div>
+				<div class="portfolio-image" ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)" style="background-image: url('{{portfolioImage}}')"></div>
+				<div class="portfolio-padding"></div>
 			</div>
-					
-			<i>Copyright 2014, Jemma Elise Tockuss, jemmaelise@live.com</i>
-		</footer>
-	
-	</div>
-	
-	<div id="portfolio" style="width: {{portfolioWidth}}px">
-		<div id="slide-set"></div>
-	</div>
-	
-	<div id="slide-controls">		
-		<span id="slide-reset" ng-click="resetSlides()">scroll &#8644;</span>
-	</div>
+		</div>
 
-</body>
+	</body>
 </html>
