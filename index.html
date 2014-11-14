@@ -17,14 +17,21 @@
 
 	<body ng-controller="PortfolioController">
 		
-		<div class="logo-div">
-			<img style="width:100%" src="images/JE-Logo-purp-01.png"/>
+		<div class="intro-div">
+			<img style="width:50%" src="images/JE-Logo-purp-01.png"/>
+			<article class="intro-article">
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in finibus lacus, vel sodales nibh. Phasellus nulla quam, consequat ut libero quis, rutrum sagittis neque. Cras luctus mattis dapibus. Sed ac bibendum purus. Duis maximus sapien a fringilla sollicitudin. Sed ullamcorper molestie mauris sed molestie. Duis tempor turpis magna, at tristique dui ultricies eu. Integer lacinia turpis risus, at facilisis massa dignissim vitae. Aenean odio tellus, iaculis id fringilla ut, maximus eget risus. Etiam interdum consequat felis sed scelerisque.
+			<p>
+			Aenean vehicula tellus ullamcorper neque rhoncus, vitae sollicitudin ex tristique. Sed eget tellus id est aliquet tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed nulla sit amet lacus euismod ultricies in sed nisi. Proin commodo, felis non dapibus ornare, mauris magna iaculis eros, eu tempor ligula mauris non justo. Suspendisse potenti. Praesent nisl ex, mollis in porta vel, interdum pretium turpis. Vivamus viverra nisi imperdiet, ultricies orci sed, porta nibh. Ut nec nunc quis magna consectetur pretium in ut felis. Vivamus semper convallis neque. Nunc eu rutrum mi, in faucibus nulla. Quisque luctus eros sed justo maximus, in vestibulum arcu aliquam.
+			</article>
 		</div>
 		
 		<div class="portfolio">
 			<div class="portfolio-set" ng-repeat="portfolioSet in portfolio">
+				<span class="portfolio-title">{{portfolioSet.title}}</span>
 				<div class="portfolio-padding"></div>
-				<div class="portfolio-image" ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)" style="background-image: url('{{portfolioImage}}')"></div>
+				<div class="portfolio-image" ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)" style="background-image: url('images/transpBlack.png'), url('{{portfolioImage}}')"></div>
 				<div class="portfolio-padding"></div>
 			</div>
 		</div>
