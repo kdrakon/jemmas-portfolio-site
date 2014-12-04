@@ -17,24 +17,35 @@
 
 	<body ng-controller="PortfolioController">
 		
+		<header>
+			<div class="logo-div">
+				<img class="logo-img" src="images/JE-Logo-purp-01.png"/>
+				<div class="social-buttons-div">
+					<a href="http://www.flickr.com/photos/jemmaelisedesign/sets" target="_blank" title="See my photos on Flickr!"><img src="http://l.yimg.com/g/images/goodies/white-flickr.png" style="height:18px" alt=""></a>				
+					<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.21f7daa948263c3043bab783473c3475.en.html#_=1416282036084&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=jemma_elise&amp;show_count=false&amp;show_screen_name=false&amp;size=m" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 59px; height: 20px;"></iframe><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>				
+					<a href="http://linkedin.com/in/jemmaelise" target="_blank" style="text-decoration:none;"><span style="font: 80% Arial,sans-serif; color:#0783B6;"><img src="http://www.linkedin.com/img/webpromo/btn_in_20x15.png" alt="View Jemma Elise Tockuss's LinkedIn profile" style="height:18px; border-style:none;" border="0"></span></a>
+				</div>
+			</div>
+		</header>
+		
 		<div class="intro-div">
-			<img style="width:50%" src="images/JE-Logo-purp-01.png"/>
 			<article class="intro-article">
-			<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur in finibus lacus, vel sodales nibh. Phasellus nulla quam, consequat ut libero quis, rutrum sagittis neque. Cras luctus mattis dapibus. Sed ac bibendum purus. Duis maximus sapien a fringilla sollicitudin. Sed ullamcorper molestie mauris sed molestie. Duis tempor turpis magna, at tristique dui ultricies eu. Integer lacinia turpis risus, at facilisis massa dignissim vitae. Aenean odio tellus, iaculis id fringilla ut, maximus eget risus. Etiam interdum consequat felis sed scelerisque.
-			<p>
-			Aenean vehicula tellus ullamcorper neque rhoncus, vitae sollicitudin ex tristique. Sed eget tellus id est aliquet tempor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed nulla sit amet lacus euismod ultricies in sed nisi. Proin commodo, felis non dapibus ornare, mauris magna iaculis eros, eu tempor ligula mauris non justo. Suspendisse potenti. Praesent nisl ex, mollis in porta vel, interdum pretium turpis. Vivamus viverra nisi imperdiet, ultricies orci sed, porta nibh. Ut nec nunc quis magna consectetur pretium in ut felis. Vivamus semper convallis neque. Nunc eu rutrum mi, in faucibus nulla. Quisque luctus eros sed justo maximus, in vestibulum arcu aliquam.
+			Excelsior!
 			</article>
 		</div>
 		
 		<div class="portfolio">
 			<div class="portfolio-set" ng-repeat="portfolioSet in portfolio">
-				<span class="portfolio-title">{{portfolioSet.title}}</span>
-				<div class="portfolio-padding"></div>
-				<div class="portfolio-image" ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)" style="background-image: url('images/transpBlack.png'), url('{{portfolioImage}}')"></div>
-				<div class="portfolio-padding"></div>
+				<div class="portfolio-title">{{portfolioSet.title}}</div>
+				<div class="portfolio-images-box">
+					<div class="portfolio-image" ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)" style="background-image: url('{{portfolioImage}}')"></div>
+				</div>
 			</div>
 		</div>
+		
+		<footer>
+			Copyright 2014, Jemma Elise Tockuss, jemmaelise@live.com
+		</footer>
 
 	</body>
 </html>
