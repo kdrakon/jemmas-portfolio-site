@@ -112,6 +112,7 @@ header {
 }
 
 .portfolio-image {
+    cursor: pointer;
     background-repeat: repeat-x;
     background-size: cover;
     height: 25em;
