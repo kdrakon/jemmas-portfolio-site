@@ -2,9 +2,9 @@
 <html ng-app="portfolio">
 	<head>
 		
-		<script src="js/jquery-1.9.1.js"></script>
 		<script src="js/angular.min.js"></script>
 		<script src="js/portfolio.js"></script>
+		
 		<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 		<link href="style.css" rel="stylesheet" type="text/css">
@@ -15,7 +15,7 @@
 
 	</head>
 
-	<body ng-controller="PortfolioController">
+	<body ng-controller="PortfolioController" onload="bodyReady()">
 		
 		<header>
 			<div class="logo-div">
@@ -36,12 +36,27 @@
 		
 		<div class="portfolio">
 			<div class="portfolio-set" ng-repeat="portfolioSet in portfolio">
+				
 				<div class="portfolio-title">{{portfolioSet.title}}</div>
 				<div class="portfolio-images-box">
-					<div class="portfolio-image" ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)" style="background-image: url('{{portfolioImage}}')"></div>
+					<div class="portfolio-image" 
+						ng-repeat="portfolioImage in portfolioSet.images.slice(0,6)"
+						ng-click="setSliderImages(portfolioSet, $index)"
+						style="background-image: url('{{portfolioImage}}')">
+					</div>
 				</div>
+				
 			</div>
 		</div>
+		
+		<div id="portfolio-slider" class="slider" ng-class="{'hidden-slider' : isSliderEmpty()}">			
+			<div class="slider-image-div" style="background-image: url('{{getCurrentSliderImage()}}')"></div>
+			<div class="slider-control">
+				<div class="arrow-left" ng-click="shiftSliderImages(1)"></div>
+				<div class="arrow-right" ng-click="shiftSliderImages(-1)"></div>
+				<div class="close-button" ng-click="clearSlider()">close</div>
+			</div>			
+		</div>		
 		
 		<footer>
 			Copyright 2015, Jemma Elise Tockuss, jemmaelise@live.com
