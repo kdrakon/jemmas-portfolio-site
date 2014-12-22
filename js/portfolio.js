@@ -1,80 +1,55 @@
 
-var minPortfolioWidth = 1080;
-var initialSet = 10;
 
 angular.module('portfolio', [])
-	.controller('SlideController', ['$scope', '$animate', function($scope, $animate) {
+	.controller('PortfolioController', ['$scope', '$http', function($scope, $http) {
 		
-		$scope.loadingPortfolio = false;
-		$scope.portfolioImageSet = [];
-		$scope.portfolioSetTitles = [];
-		$scope.portfolioWidth = minPortfolioWidth;
-		$scope.slideSetElement = $('#slide-set');
-		$scope.scrollInterval = 0;
+		$scope.portfolio = [];
+		$scope.sliderPortfolioSet = {images:[]};
 		
-		$scope.loadPortfolioSet = function(setIndex){
-			if ($scope.loadingPortfolio) return;
-			$.getJSON('portfolio/layout.json', function(portfolioDefn){		
-				$scope.$apply(function() {
-
-					if (typeof portfolioDefn == 'undefined') return;
-					
-					$scope.loadingPortfolio = true;
-					
-					$scope.resetSlides();
-					$scope.portfolioSetTitles = [];	
-					$scope.portfolioWidth = minPortfolioWidth;
-					
-					// clear old image set
-					$.each($scope.portfolioImageSet, function(){
-						var slide = $scope.portfolioImageSet.pop();
-						$animate.leave(slide);
-					});
-					$('.slide').each(function(){ this.remove() });
-					
-					// load set titles
-					$.each(portfolioDefn, function(i, e){
-						$scope.portfolioSetTitles.push({title : e.title, index : i});
-					});
-
-					// load portfolio set
-					for (var i = 0; i < portfolioDefn[setIndex].images.length; i++){
-						var slide = new Image();
-						slide.src = portfolioDefn[setIndex].images[i];
-						slide.onload = function(){
-							var lastSlide = $('.slide').last();
-							$scope.addToPortfolioWidth(this.width);
-							$(this).addClass("slide");
-							if (lastSlide.length > 0){
-								$animate.enter(this, $scope.slideSetElement, lastSlide);
-							} else {
-								$animate.enter(this, $scope.slideSetElement);
-							}
-						}
-						$scope.portfolioImageSet.push(slide);
-					}
-					
-					$scope.loadingPortfolio = false;		
-					
-				});					
-			});	
+		$scope.loadPortfolio = function(){
+			$http.get('portfolio/layout.json').
+				success(function(data, status, headers, config) {
+					$scope.portfolio = data;
+				 });
 		};
 		
-		$scope.addToPortfolioWidth = function(width){
-			$scope.$apply(function(){ $scope.portfolioWidth += width; })
+		$scope.setSliderImages = function(portfolioSet, startIndex){
+			var length = portfolioSet.images.length;
+			var images = new Array(), index = startIndex;
+			while(images.length < length){
+				images.push(portfolioSet.images[index]);
+				index = (index + 1) % length;
+			}
+			
+			$scope.sliderPortfolioSet.images = images;
 		};
 		
-		$scope.resetSlides = function(){	
-			var x = $(window).scrollLeft();
-			clearInterval($scope.scrollInterval);
-			$scope.scrollInterval = setInterval(function(){
-				scrollTo(x-=50,0);
-				if (x <= 0)	clearInterval($scope.scrollInterval);
-			}, 10);				
+		$scope.shiftSliderImages = function(shift){
+			if (shift == 1) {
+				var last = $scope.sliderPortfolioSet.images.pop();
+				$scope.sliderPortfolioSet.images.unshift(last);
+			} else {
+				var first = $scope.sliderPortfolioSet.images.shift();
+				$scope.sliderPortfolioSet.images.push(first);
+			}
+		};
+		
+		$scope.isSliderEmpty = function(){
+			return $scope.sliderPortfolioSet.images.length == 0;
+		};
+		
+		$scope.getCurrentSliderImage = function(){
+			return $scope.sliderPortfolioSet.images[0];
+		};
+		
+		$scope.clearSlider = function(){ 
+			$scope.sliderPortfolioSet.images = new Array();
 		};
 
 		// start the controller
-		var init = function() { $scope.loadPortfolioSet(initialSet); }
+		var init = function() { 
+			$scope.loadPortfolio(); 
+		}
 		init();
 		
 	}]);
