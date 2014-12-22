@@ -50,7 +50,10 @@
 		</div>
 		
 		<div id="portfolio-slider" class="slider" ng-class="{'hidden-slider' : isSliderEmpty()}">			
-			<div class="slider-image-div" style="background-image: url('{{getCurrentSliderImage()}}')"></div>
+			<div class="slider-image-div" 
+				style="background-image: url('{{getCurrentSliderImage()}}')"
+				ng-click="shiftSliderImages(1)">
+			</div>
 			<div class="slider-control">
 				<div class="arrow-left" ng-click="shiftSliderImages(1)"></div>
 				<div class="arrow-right" ng-click="shiftSliderImages(-1)"></div>

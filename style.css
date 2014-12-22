@@ -140,6 +140,7 @@ header {
 }
 
 .slider-image-div {
+    cursor: pointer;
     z-index: 51;
     width: 75%;
     height: 100%;
